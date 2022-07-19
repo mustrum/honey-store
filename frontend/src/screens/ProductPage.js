@@ -1,13 +1,24 @@
-import React from "react";
-import {Container, Row, Col, Image, ListGroup, Card, Button, Alert} from "react-bootstrap";
-import {Link} from "react-router-dom";
-import {useParams} from "react-router-dom";
-import {products} from '../products';
+import React, {useEffect, useState} from "react";
+import {Container, Row, Col, Image, Button, Alert} from "react-bootstrap";
+import {Link, useParams} from "react-router-dom";
 import ProductRating from "../components/products/ProductRating";
+import axios from "axios";
 
 
-const Product = () => {
-  const product = products.find(el => el._id === useParams().id);
+const ProductPage = () => {
+  const [product, setProduct] = useState({});
+  const param = useParams().id;
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await axios.get(`/api/products/${param}`);
+      setProduct(res.data);
+    };
+
+    fetchProduct().catch(console.error);
+  }, []);
+
+  //const product = products.find(el => el._id === useParams().id);
   return (
     <Container>
       <Link className="btn btn-dark my-3" to="/products">назад</Link>
@@ -25,11 +36,11 @@ const Product = () => {
         </Col>
         <Col md={{span: 3, offset: 3}}>
           <p>Цена: {product.price} лв</p>
-          { product.inStock > 0
+          {product.inStock > 0
             ? <>
-                <Alert className="text-center" variant="success">в наличност</Alert>
-                <Button className="btn btn-dark" >добави в количка</Button>
-              </>
+              <Alert className="text-center" variant="success">в наличност</Alert>
+              <Button className="btn btn-dark">добави в количка</Button>
+            </>
             : <Alert className="text-center" variant="danger">изчерпан</Alert>
           }
 
@@ -39,4 +50,4 @@ const Product = () => {
   )
 };
 
-export default Product;
+export default ProductPage;

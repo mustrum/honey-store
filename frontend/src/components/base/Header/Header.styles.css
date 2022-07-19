@@ -1,0 +1,24 @@
+#basic-navbar-nav {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+#navbarNav {
+    justify-content: flex-end;
+}
+
+.nav-item {
+    margin: 0 1em;
+}
+
+.nav-item a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: #343434;
+}
+
+.navbar-expand-lg .navbar-nav {
+    flex-direction: row;
+    margin-top: -100px;
+}

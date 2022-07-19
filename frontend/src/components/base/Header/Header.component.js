@@ -1,26 +1,40 @@
 import React from "react";
-import {Nav, Navbar, Container, Image} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import './Header.styles.css';
 
-const Header = () => {
+
+const HeaderComponent = () => {
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Container>
-          <Link className="header-logo" to="/">
-            <Image src="./logo.png" alt="logo" width="140" height="140"/>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container justify-content-end">
+          <Link className="navbar-brand" to="/">
+            <img src="./logo.png" alt="logo" width="150" height="150"/>
           </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Link to="/">начало</Link>
-              <Link to="/products">продукти</Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/">начало</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" aria-current="page" to="/products">продукти</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" aria-current="page" to="/about">за нас</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" aria-current="page" to="/contacts">контакти</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
   )
 };
 
-export default Header;
+export default HeaderComponent;
